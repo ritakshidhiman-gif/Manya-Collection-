@@ -137,7 +137,9 @@ export async function deleteCatalogProduct(id: string): Promise<void> {
       console.warn("[Catalog] Database unavailable; product deleted from persistent file catalog.");
     }
   }
-  export async function recordStoreActivity(event: Omit<InsertStoreActivity, "createdAt">): Promise<void> {
+}
+
+export async function recordStoreActivity(event: Omit<InsertStoreActivity, "createdAt">): Promise<void> {
   const db = await getDb();
   if (!db && process.env.NODE_ENV === "production") {
     throw new Error("DATABASE_URL is required to store production activity.");
@@ -151,7 +153,6 @@ export async function deleteCatalogProduct(id: string): Promise<void> {
       console.warn("[Activity] Database unavailable; recording event to local file.");
     }
   }
-}
   await appendFileStoreActivity(event);
 }
 
@@ -170,4 +171,3 @@ export async function listStoreActivity(): Promise<StoreActivity[]> {
   }
   return listFileStoreActivity();
 }
-
