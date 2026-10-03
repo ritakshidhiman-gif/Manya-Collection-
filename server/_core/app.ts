@@ -9,6 +9,9 @@ import { createContext } from "./context.ts";
 export function configureApp(app: Express) {
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  if (process.env.NODE_ENV !== "development") {
+    app.use(express.static(resolve(process.cwd(), "public")));
+  }
   registerStorageProxy(app);
   registerOAuthRoutes(app);
   app.use(
