@@ -1,0 +1,1 @@
+ALTER TABLE `catalog_products` MODIFY COLUMN `image` longtext NOT NULL;

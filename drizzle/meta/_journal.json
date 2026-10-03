@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1790325998614,
+      "tag": "0000_fat_the_anarchist",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1790957772660,
+      "tag": "0001_flimsy_calypso",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1790958088531,
+      "tag": "0002_smart_elektra",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1791011841543,
+      "tag": "0003_store_activity",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1791014366967,
+      "tag": "0004_activity_order_details",
+      "breakpoints": true
+    }
+  ]
+}
