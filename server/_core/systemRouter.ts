@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { notifyOwner } from "./notification";
-import { adminProcedure, publicProcedure, router } from "./trpc";
+import { notifyOwner } from "./notification.ts";
+import { adminProcedure, publicProcedure, router } from "./trpc.ts";
 
 export const systemRouter = router({
   health: publicProcedure

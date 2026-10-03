@@ -1,13 +1,13 @@
 import { parse as parseCookieHeader } from "cookie";
-import { COOKIE_NAME } from "../shared/const";
-import { getSessionCookieOptions } from "./_core/cookies";
-import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { COOKIE_NAME } from "../shared/const.ts";
+import { getSessionCookieOptions } from "./_core/cookies.ts";
+import { systemRouter } from "./_core/systemRouter.ts";
+import { publicProcedure, router } from "./_core/trpc.ts";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-import { deleteCatalogProduct, listCatalogProducts, listStoreActivity, recordStoreActivity, saveCatalogProduct } from "./db";
-import { ADMIN_COOKIE_NAME, ADMIN_SESSION_MAX_AGE_MS, createAdminSession, readAdminSession, verifyAdminCredentials } from "./security";
-import { isAllowedAdminEmail } from "../shared/admin";
+import { deleteCatalogProduct, listCatalogProducts, listStoreActivity, recordStoreActivity, saveCatalogProduct } from "./db.ts";
+import { ADMIN_COOKIE_NAME, ADMIN_SESSION_MAX_AGE_MS, createAdminSession, readAdminSession, verifyAdminCredentials } from "./security.ts";
+import { isAllowedAdminEmail } from "../shared/admin.ts";
 
 const catalogProductInput = z.object({
   id: z.string().min(1).max(80),

@@ -1,9 +1,9 @@
 import { desc, eq, ne } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { CatalogProduct, InsertCatalogProduct, InsertStoreActivity, InsertUser, StoreActivity, catalogProducts, storeActivity, users } from "../drizzle/schema";
-import { getRoleForAccountEmail } from "../shared/admin";
-import { deleteFileCatalogProduct, listFileCatalogProducts, saveFileCatalogProduct } from "./catalogStore";
-import { appendFileStoreActivity, listFileStoreActivity } from "./activityStore";
+import { CatalogProduct, InsertCatalogProduct, InsertStoreActivity, InsertUser, StoreActivity, catalogProducts, storeActivity, users } from "../drizzle/schema.ts";
+import { getRoleForAccountEmail } from "../shared/admin.ts";
+import { deleteFileCatalogProduct, listFileCatalogProducts, saveFileCatalogProduct } from "./catalogStore.ts";
+import { appendFileStoreActivity, listFileStoreActivity } from "./activityStore.ts";
 
 let _db: ReturnType<typeof drizzle> | null = null;
 

@@ -1,6 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import type { CatalogProduct } from "../drizzle/schema";
+import type { CatalogProduct } from "../drizzle/schema.ts";
 
 type StoredCatalogProduct = Omit<CatalogProduct, "createdAt" | "updatedAt"> & {
   createdAt?: string;

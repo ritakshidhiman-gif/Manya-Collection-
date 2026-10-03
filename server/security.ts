@@ -1,5 +1,5 @@
-import { ENV } from "./_core/env";
-import { normalizePhone } from "../shared/admin";
+import { ENV } from "./_core/env.ts";
+import { normalizePhone } from "../shared/admin.ts";
 
 export const ADMIN_COOKIE_NAME = "manya_admin_session";
 export const ADMIN_SESSION_MAX_AGE_MS = 1000 * 60 * 60 * 24 * 7; // 7 days

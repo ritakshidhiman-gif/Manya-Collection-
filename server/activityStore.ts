@@ -1,6 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import type { InsertStoreActivity, StoreActivity } from "../drizzle/schema";
+import type { InsertStoreActivity, StoreActivity } from "../drizzle/schema.ts";
 
 type NewStoreActivity = Omit<InsertStoreActivity, "createdAt">;
 type StoredStoreActivity = Omit<StoreActivity, "createdAt"> & { createdAt?: string | Date };
