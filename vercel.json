@@ -2,6 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
   "rewrites": [
+    { "source": "/", "destination": "/index.html" },
     { "source": "/account", "destination": "/index.html" },
     { "source": "/admin/:path*", "destination": "/index.html" },
     { "source": "/404", "destination": "/index.html" }
