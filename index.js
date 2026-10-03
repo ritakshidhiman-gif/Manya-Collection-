@@ -1,5 +1,5 @@
 import express from "express";
-import { configureApp } from "./server/_core/app.ts";
+import { configureApp } from "./dist/vercel-app.js";
 
 const app = configureApp(express());
 
