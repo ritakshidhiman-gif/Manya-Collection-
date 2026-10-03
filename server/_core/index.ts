@@ -1,7 +1,8 @@
 import "dotenv/config";
+import express from "express";
 import { createServer } from "http";
 import net from "net";
-import { createApp } from "./app";
+import { configureApp } from "./app";
 import { serveStatic, setupVite } from "./vite";
 
 function isPortAvailable(port: number): Promise<boolean> {
@@ -24,7 +25,7 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
-  const app = createApp();
+  const app = configureApp(express());
   const server = createServer(app);
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {

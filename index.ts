@@ -1,3 +1,6 @@
-import { createApp } from "./server/_core/app";
+import express from "express";
+import { configureApp } from "./server/_core/app";
 
-export default createApp();
+const app = configureApp(express());
+
+export default app;
