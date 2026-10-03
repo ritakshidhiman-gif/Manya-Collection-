@@ -151,6 +151,7 @@ export async function deleteCatalogProduct(id: string): Promise<void> {
       console.warn("[Activity] Database unavailable; recording event to local file.");
     }
   }
+}
   await appendFileStoreActivity(event);
 }
 
@@ -169,4 +170,4 @@ export async function listStoreActivity(): Promise<StoreActivity[]> {
   }
   return listFileStoreActivity();
 }
-}
+
