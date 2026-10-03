@@ -8,6 +8,7 @@ const money = (amount: number | null) =>
 
 const eventLabel: Record<string, string> = {
   customer_login: "Customer signed in",
+  admin_login: "Admin signed in",
   checkout_started: "Started checkout",
   checkout_details_entered: "Entered checkout details",
   cod_order_requested: "COD order requested",
@@ -38,7 +39,7 @@ export default function AdminActivity() {
     return !hasOutcome && Date.now() - new Date(checkout.createdAt).getTime() >= 20 * 60 * 1000;
   }).length;
   const identifiedCustomers = new Set(events.filter((event) => event.customerEmail).map((event) => event.customerEmail?.toLowerCase())).size;
-  const signInCount = events.filter((event) => event.eventType === "customer_login").length;
+  const signInCount = events.filter((event) => event.eventType === "customer_login" || event.eventType === "admin_login").length;
   const reportedPayments = events.filter((event) => event.eventType === "payment_succeeded").length;
   const codOrders = events.filter((event) => event.eventType === "cod_order_requested").length;
 
@@ -93,7 +94,7 @@ export default function AdminActivity() {
 
       <section className="admin-activity-stats" aria-label="Store activity summary">
         <article><UserRound size={17} /><span>Identified customers</span><strong>{identifiedCustomers}</strong></article>
-        <article><Activity size={17} /><span>Customer sign-ins</span><strong>{signInCount}</strong></article>
+        <article><Activity size={17} /><span>Account sign-ins</span><strong>{signInCount}</strong></article>
         <article><PackageCheck size={17} /><span>Checkout starts</span><strong>{checkoutEvents.length}</strong></article>
         <article><CircleAlert size={17} /><span>Abandoned checkouts</span><strong>{abandonedCount}</strong></article>
         <article><ShieldCheck size={17} /><span>Success callbacks</span><strong>{reportedPayments}</strong></article>

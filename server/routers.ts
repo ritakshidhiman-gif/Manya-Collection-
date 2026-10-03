@@ -27,7 +27,7 @@ const storeActivityInput = z.object({
   id: z.string().uuid(),
   visitorId: z.string().uuid(),
   checkoutId: z.string().uuid().nullable().optional(),
-  eventType: z.enum(["customer_login", "checkout_started", "checkout_details_entered", "cod_order_requested", "payment_succeeded", "payment_failed", "payment_cancelled"]),
+  eventType: z.enum(["customer_login", "admin_login", "checkout_started", "checkout_details_entered", "cod_order_requested", "payment_succeeded", "payment_failed", "payment_cancelled"]),
   path: z.string().max(255),
   customerName: z.string().max(240).nullable().optional(),
   customerEmail: z.string().email().max(320).nullable().optional(),

@@ -49,7 +49,7 @@ type Product = {
 
 type CartLine = { productId: string; size: string; quantity: number };
 type ModalName = "cart" | "checkout" | "admin" | "editProduct" | "search" | "contact" | "account" | null;
-type StoreEventType = "customer_login" | "checkout_started" | "checkout_details_entered" | "cod_order_requested" | "payment_succeeded" | "payment_failed" | "payment_cancelled";
+type StoreEventType = "customer_login" | "admin_login" | "checkout_started" | "checkout_details_entered" | "cod_order_requested" | "payment_succeeded" | "payment_failed" | "payment_cancelled";
 type StoreActivityPayload = {
   eventType: StoreEventType;
   path: string;
@@ -179,7 +179,8 @@ export default function Home() {
   const isAdmin = !customerMode && adminSession?.isAdmin === true;
   const recordActivity = (event: StoreActivityPayload) => {
     const hasCustomerDetails = Boolean(event.customerName && event.customerEmail && event.customerPhone);
-    if (isAdmin || (!displayName && event.eventType !== "customer_login" && !hasCustomerDetails)) return Promise.resolve(false);
+    const isLoginEvent = event.eventType === "customer_login" || event.eventType === "admin_login";
+    if (!isLoginEvent && (isAdmin || (!displayName && !hasCustomerDetails))) return Promise.resolve(false);
     return trackActivityMutation.mutateAsync({
       id: createActivityId(),
       visitorId: getCustomerActivityId(event.customerEmail ?? contactForm.email),
@@ -615,6 +616,13 @@ export default function Home() {
       onSuccess: async () => {
         setCustomerMode(false);
         saveCustomerProfile();
+        recordActivity({
+          eventType: "admin_login",
+          path: window.location.pathname,
+          customerName: contactForm.name.trim(),
+          customerEmail: contactForm.email.trim().toLowerCase(),
+          customerPhone: contactForm.phone.trim(),
+        });
         await utils.admin.me.invalidate();
         await utils.admin.me.refetch();
         setAdminChallengeVisible(false);
