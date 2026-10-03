@@ -26,7 +26,21 @@ function withDate(event: StoredStoreActivity): StoreActivity {
 export async function appendFileStoreActivity(event: NewStoreActivity, filePath = ACTIVITY_FILE): Promise<void> {
   const operation = updateQueue.then(async () => {
     const events = await readFileActivity(filePath);
-    events.push({ ...event, createdAt: new Date().toISOString() });
+    events.push({
+      id: event.id,
+      visitorId: event.visitorId,
+      checkoutId: event.checkoutId ?? null,
+      eventType: event.eventType,
+      path: event.path,
+      customerName: event.customerName ?? null,
+      customerEmail: event.customerEmail ?? null,
+      customerPhone: event.customerPhone ?? null,
+      deliveryAddress: event.deliveryAddress ?? null,
+      paymentMethod: event.paymentMethod ?? null,
+      amount: event.amount ?? null,
+      paymentId: event.paymentId ?? null,
+      createdAt: new Date().toISOString(),
+    });
     if (events.length > 5000) events.splice(0, events.length - 5000);
     await mkdir(dirname(filePath), { recursive: true });
     const tempPath = `${filePath}.tmp`;
