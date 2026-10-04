@@ -442,7 +442,7 @@ export default function Home() {
     }
 
     if (typeof (window as any).Razorpay === "undefined") {
-      alert("Razorpay SDK load nahi hua hai. Kripya page refresh karein.");
+      alert("Razorpay SDK is not loaded yet. Please Refresh the page.");
       return;
     }
 
@@ -503,7 +503,8 @@ export default function Home() {
             amount: cartTotal,
           });
           setActiveCheckoutId("");
-          alert("⚠️ Payment window cancel ho gayi hai.");
+          setModal("checkout");
+          alert("⚠️ Payment window is cancelled");
         },
       },
       prefill: {
@@ -539,7 +540,8 @@ export default function Home() {
       );
     });
 
-    rzp.open();
+   setModal(null);
+   setTimeout(()=> rzp.open(), 300);
   };
 
   const openAccount = () => {
